@@ -25,7 +25,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
+    - name: Check node version
+      run: node -v
+    - name: Install packages
+      run: npm ci
     - name: Run unit tests
       run: npm run unitTest
     #- run: npm run build --if-present
@@ -33,13 +36,10 @@ jobs:
       run: |
         nohup npm run start > server.log 2>&1 &
         echo $! > server.pid
-
     - name: Wait for server
       run: npx wait-on http://localhost:3000
-
     - name: Run E2E tests
       run: npm run e2eTest
-
     - name: Stop server
       if: always()
       run: |
