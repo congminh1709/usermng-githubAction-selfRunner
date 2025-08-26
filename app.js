@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
     res.status(200).json({
         meta: {
             code: 200,
-            message: `server version ${VERSION} returns OK`,
+            message: `server version ${VERSION} - update 250826 returns OK`,
         }
     })
 })
